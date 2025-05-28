@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentRegistrationController;
+use App\Http\Controllers\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('student-registrations', StudentRegistrationController::class);
+
+Route::get('/attendance', [AttendanceController::class, 'index']);
+
+
+Route::get('/attendance/take', [AttendanceController::class, 'take'])->name('attendance.take');
+Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
